@@ -1,0 +1,24 @@
+<br/>
+<br/>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Libélle</th>
+    <th>Coefficient</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let matiere of matieres$| async;">
+    <td>{{ matiere.id }}</td>
+    <td>{{ matiere.libelle }}</td>
+    <td>{{ matiere.coefficient }}</td>
+    <td>
+      <div>
+        <button class="btn" (click)="deleteMatiere(matiere.id)">Supprimer</button>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
