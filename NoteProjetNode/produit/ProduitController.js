@@ -3,10 +3,10 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
-var Matiere = require('./Matiere');
+var Produit = require('./Produit');
 
 router.get('/', function (req, res) {
-    Matiere.getmatieres(function (err, rows) {
+    Produit.getProduits(function (err, rows) {
         if (err) {
             res.status(400).json(err);
         }
@@ -17,7 +17,7 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-    Matiere.creatematiere(req.body, function (err, count) {
+    Produit.createProduit(req.body, function (err, count) {
         if (err) {
             res.status(400).json(err);
         }
@@ -29,7 +29,7 @@ router.post('/', function (req, res) {
 });
 
 router.post('/delete', function (req, res) {
-    Matiere.deletematiere(req.body, function (err, count) {
+    Produit.deletProduit(req.body, function (err, count) {
         if (err) {
             res.status(400).json(err);
         }
