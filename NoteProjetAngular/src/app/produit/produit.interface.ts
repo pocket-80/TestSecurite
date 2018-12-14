@@ -1,4 +1,8 @@
 export interface Produit {
-  id: Number;
-  libelle: String;
+  idProduit: Number;
+  nomProduit: String;
+  descriptionProduit: String;
+  quantiteEnStock: Number;
+  dispoVente: Number;
+  lienImage: String;
 }

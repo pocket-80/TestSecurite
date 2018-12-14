@@ -9,8 +9,8 @@ var cors = require('cors');
 
 app.use(cors());
 
-var MatiereController = require('./matiere/MatiereController');
-app.use('/matieres', MatiereController);
+var ProduitController = require('./produit/ProduitController');
+app.use('/produits', ProduitController);
 
 var EtudiantController = require('./etudiant/EtudiantController');
 app.use('/etudiants', EtudiantController);

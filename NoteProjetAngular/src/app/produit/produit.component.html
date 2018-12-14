@@ -9,17 +9,19 @@
 <table class="table table-striped">
   <thead>
   <tr>
-    <th>ID</th>
-    <th>Libélle</th>
+    <th>nomProduit</th>
+    <th>descriptionProduit</th>
+    <th>quantiteEnStock</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let p of produits$| async;">
-    <td>{{ p.id }}</td>
-    <td>{{ p.libelle }}</td>
+    <td>{{ p.nomProduit }}</td>
+    <td>{{ p.descriptionProduit }}</td>
+    <td>{{ p.quantiteEnStock }}</td>
     <td>
       <div>
-        <button class="btn" (click)="deleteProduit(p.id)">Supprimer</button>
+        <button class="btn" (click)="deleteProduit(p.idProduit)">Supprimer</button>
       </div>
     </td>
   </tr>

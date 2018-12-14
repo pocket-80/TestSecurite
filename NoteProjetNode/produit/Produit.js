@@ -2,13 +2,13 @@ var db = require('../db');
 
 var Produit = {
     getProduits: function (callback) {
-        return db.query('SELECT * from t_matiere', callback);
+        return db.query('SELECT * from produits', callback);
     },
     createProduit: function (Produit, callback) {
-        return db.query('Insert into t_matiere(libelle, coefficient) values(?, ?)', [Produit.libelle, Produit.coefficient], callback);
+        return db.query('Insert into produits(nomProduit, descriptionProduit) values(?, ?)', [Produit.nomProduit, Produit.descriptionProduit], callback);
     },
     deleteProduit: function (Produit, callback) {
-        return db.query('DELETE from t_matiere WHERE id = ?', [Produit.id], callback);
+        return db.query('DELETE from produits WHERE idProduit = ?', [Produit.id], callback);
     }
 }
 
