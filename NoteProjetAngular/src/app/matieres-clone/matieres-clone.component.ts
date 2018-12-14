@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatiereListModule} from "../store/actions/matiere.action";
 import {Observable} from "rxjs/Rx";
-import {Matiere} from "../matieres/matieres.interface";
+import {Matiere} from "../matiere/matiere.interface";
 import {select, Store} from "@ngrx/store";
 import {AppState} from "../store/index";
 import {selectMatiereListEntitiesConverted$, selectMatieresLoading$} from "../store/selectors/matiere.selector";

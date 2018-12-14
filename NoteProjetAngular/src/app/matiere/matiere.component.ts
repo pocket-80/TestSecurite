@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Matiere} from './matieres.interface';
+import {Matiere} from './matiere.interface';
 import {Router} from "@angular/router";
 import {Observable} from "rxjs/Rx";
 import {AppState} from "../store/index";
@@ -9,8 +9,8 @@ import {selectMatiereListEntitiesConverted$, selectMatieresLoading$} from "../st
 
 @Component({
   selector: 'app-matieres',
-  templateUrl: './matieres.component.html',
-  styleUrls: ['./matieres.component.css']
+  templateUrl: './matiere.component.html',
+  styleUrls: ['./matiere.component.css']
 })
 export class MatieresComponent implements OnInit {
 

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MatieresComponent } from './matieres.component';
+import { MatieresComponent } from './matiere.component';
 
 describe('MatieresComponent', () => {
   let component: MatieresComponent;

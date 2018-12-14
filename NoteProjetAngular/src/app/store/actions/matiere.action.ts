@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import {Matiere} from "../../matieres/matieres.interface";
+import {Matiere} from "../../matiere/matiere.interface";
 
 export namespace MatiereListModule {
 

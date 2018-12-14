@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from  '@ngrx/effects';
 import { Observable } from  'rxjs/Observable';
 import { catchError, map, switchMap } from  'rxjs/operators';
 import {of} from "rxjs/index";
-import {MatiereService} from "../../matieres/matiere.service";
+import {MatiereService} from "../../matiere/matiere.service";
 import {MatiereListModule} from "../actions/matiere.action";
 
 @Injectable()

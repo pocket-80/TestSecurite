@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Matiere} from "../matieres/matieres.interface";
+import {Matiere} from "../matiere/matiere.interface";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AppState} from "../store/index";
 import {Store} from "@ngrx/store";

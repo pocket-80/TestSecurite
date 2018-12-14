@@ -9,8 +9,8 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import {HttpClientModule} from "@angular/common/http";
-import { MatieresComponent } from './matieres/matieres.component';
-import {MatiereService} from "./matieres/matiere.service";
+import { MatieresComponent } from './matiere/matiere.component';
+import {MatiereService} from "./matiere/matiere.service";
 import { AjoutMatiereComponent } from './ajout-matiere/ajout-matiere.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastrModule} from "ngx-toastr";

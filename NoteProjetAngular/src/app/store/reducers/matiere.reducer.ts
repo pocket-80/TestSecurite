@@ -1,5 +1,5 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import {Matiere} from "../../matieres/matieres.interface";
+import {Matiere} from "../../matiere/matiere.interface";
 import {MatiereListModule} from "../actions/matiere.action";
 
 export interface MatiereListStateEntity extends EntityState<Matiere> {
