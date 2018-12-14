@@ -1,22 +1,22 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Matiere} from "../matiere/matiere.interface";
+import {Produit} from "../produit/produit.interface";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AppState} from "../store/index";
 import {Store} from "@ngrx/store";
-import {MatiereListModule} from "../store/actions/matiere.action";
+import {ProduitListModule} from "../store/actions/produit.action";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-ajout-matiere',
-  templateUrl: './ajout-matiere.component.html',
-  styleUrls: ['./ajout-matiere.component.css']
+  selector: 'app-ajout-produit',
+  templateUrl: './ajout-produit.component.html',
+  styleUrls: ['./ajout-produit.component.css']
 })
-export class AjoutMatiereComponent implements OnInit {
+export class AjoutProduitComponent implements OnInit {
 
-  public matiereForm: FormGroup;
+  public produitForm: FormGroup;
 
   constructor(private router: Router, @Inject(FormBuilder) fb: FormBuilder, private store: Store<AppState>) {
-    this.matiereForm = fb.group({
+    this.produitForm = fb.group({
       libelle: ['', Validators.required],
       coefficient: ['', Validators.required]
     });
@@ -25,13 +25,13 @@ export class AjoutMatiereComponent implements OnInit {
   ngOnInit() {
   }
 
-  createMatiere(data: Matiere) {
+  createMatiere(data: Produit) {
     const payload = {
       ...data
     };
-    this.store.dispatch(new MatiereListModule.LoadCreateMatiere(payload));
+    this.store.dispatch(new ProduitListModule.LoadCreateProduit(payload));
     // this.matiereForm.reset();
-    this.router.navigateByUrl('/matiere');
+    this.router.navigateByUrl('/produit');
   }
 
 }

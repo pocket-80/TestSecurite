@@ -9,9 +9,9 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import {HttpClientModule} from "@angular/common/http";
-import { MatieresComponent } from './matiere/matiere.component';
-import {MatiereService} from "./matiere/matiere.service";
-import { AjoutMatiereComponent } from './ajout-matiere/ajout-matiere.component';
+import { ProduitsComponent } from './produit/produit.component';
+import {ProduitService} from "./produit/produit.service";
+import { AjoutProduitComponent } from './ajout-produit/ajout-produit.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastrModule} from "ngx-toastr";
 import {ConfirmationPopoverModule} from "angular-confirmation-popover";
@@ -19,23 +19,23 @@ import {environment} from "../environments/environment";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {EffectsModule} from "@ngrx/effects";
 import {appEffects, getReducers, REDUCER_TOKEN} from "./store/index";
-import { MatieresCloneComponent } from './matieres-clone/matieres-clone.component';
-import { MatieresParentComponent } from './matieres-parent/matieres-parent.component';
+import { ProduitsCloneComponent } from './produits-clone/produits-clone.component';
+import { ProduitsParentComponent } from './produits-parent/produits-parent.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/matiere', pathMatch: 'full' },
-  { path: 'matiere', component: MatieresParentComponent },
-  { path: 'ajout-matiere', component: AjoutMatiereComponent }
+  { path: '', redirectTo: '/produit', pathMatch: 'full' },
+  { path: 'produit', component: ProduitsParentComponent },
+  { path: 'ajout-produit', component: AjoutProduitComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    MatieresComponent,
-    AjoutMatiereComponent,
-    MatieresCloneComponent,
-    MatieresParentComponent
+    ProduitsComponent,
+    AjoutProduitComponent,
+    ProduitsCloneComponent,
+    ProduitsParentComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +73,7 @@ const appRoutes: Routes = [
       provide: REDUCER_TOKEN,
       useFactory: getReducers
     },
-    MatiereService
+    ProduitService
   ],
   bootstrap: [AppComponent]
 })

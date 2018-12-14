@@ -1,4 +1,4 @@
-export interface Matiere {
+export interface Produit {
   id: Number;
   libelle: String;
 }

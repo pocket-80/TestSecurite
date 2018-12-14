@@ -6,7 +6,7 @@ import {AppState} from "../store/index";
 import {select, Store} from "@ngrx/store";
 import {ToastrService} from "ngx-toastr";
 import {tap} from "rxjs/internal/operators";
-import {selectMatieresErrors$} from "../store/selectors/matiere.selector";
+import {selectProduitsErrors$} from "../store/selectors/produit.selector";
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +26,7 @@ export class DashboardComponent {
               private toastr: ToastrService,
               private store: Store<AppState>) {
     this.matiereListErrors$ = store.pipe(
-      select(selectMatieresErrors$),
+      select(selectProduitsErrors$),
       tap((dialog) => {
         if (!dialog) {
           return;

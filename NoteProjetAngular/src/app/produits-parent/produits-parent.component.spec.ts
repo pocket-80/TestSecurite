@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AjoutMatiereComponent } from './ajout-matiere.component';
+import { ProduitsParentComponent } from './produits-parent.component';
 
-describe('AjoutMatiereComponent', () => {
-  let component: AjoutMatiereComponent;
-  let fixture: ComponentFixture<AjoutMatiereComponent>;
+describe('ProduitsParentComponent', () => {
+  let component: ProduitsParentComponent;
+  let fixture: ComponentFixture<ProduitsParentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AjoutMatiereComponent ]
+      declarations: [ ProduitsParentComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AjoutMatiereComponent);
+    fixture = TestBed.createComponent(ProduitsParentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

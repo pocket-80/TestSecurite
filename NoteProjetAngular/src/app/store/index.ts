@@ -1,16 +1,15 @@
 import { ActionReducerMap } from '@ngrx/store';
 import { InjectionToken } from '@angular/core';
-
-import {MatiereListEffects} from "./effects/matiere.effect";
-import {MatiereListStateEntity, matieresReducer} from "./reducers/matiere.reducer";
+import {ProduitListEffects} from "./effects/produit.effect";
+import {ProduitListStateEntity, produitsReducer} from "./reducers/produit.reducer";
 
 // Le root reducer
 const reducers = {
-  matieres: matieresReducer
+  produits: produitsReducer
 };
 
 export interface AppState {
-  matieres: MatiereListStateEntity;
+  produits: ProduitListStateEntity;
 }
 
 // Nécéssaire pour l'AOT
@@ -20,4 +19,4 @@ export function getReducers() {
 // Nécéssaire pour l'AOT
 export const REDUCER_TOKEN = new InjectionToken<ActionReducerMap<AppState>>('Registered Reducers');
 
-export  const  appEffects = [MatiereListEffects];
+export  const  appEffects = [ProduitListEffects];

@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-12 pad-10">
+    <button type="submit" class="btn btn-primary" (click)="goToAddProduit()">
+      <span class="glyphicon glyphicon-floppy-disk"></span> Ajout Produit
+    </button>
+  </div>
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Libélle</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let p of produits$| async;">
+    <td>{{ p.id }}</td>
+    <td>{{ p.libelle }}</td>
+    <td>
+      <div>
+        <button class="btn" (click)="deleteProduit(p.id)">Supprimer</button>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
