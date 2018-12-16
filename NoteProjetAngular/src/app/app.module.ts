@@ -19,12 +19,10 @@ import {environment} from "../environments/environment";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {EffectsModule} from "@ngrx/effects";
 import {appEffects, getReducers, REDUCER_TOKEN} from "./store/index";
-import { ProduitsCloneComponent } from './produits-clone/produits-clone.component';
-import { ProduitsParentComponent } from './produits-parent/produits-parent.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/produit', pathMatch: 'full' },
-  { path: 'produit', component: ProduitsParentComponent },
+  { path: 'produit', component: ProduitsComponent },
   { path: 'ajout-produit', component: AjoutProduitComponent }
 ];
 
@@ -33,9 +31,7 @@ const appRoutes: Routes = [
     AppComponent,
     DashboardComponent,
     ProduitsComponent,
-    AjoutProduitComponent,
-    ProduitsCloneComponent,
-    ProduitsParentComponent
+    AjoutProduitComponent
   ],
   imports: [
     BrowserModule,

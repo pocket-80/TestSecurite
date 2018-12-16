@@ -8,7 +8,7 @@ var Produit = {
         return db.query('Insert into produits(nomProduit, descriptionProduit) values(?, ?)', [Produit.nomProduit, Produit.descriptionProduit], callback);
     },
     deleteProduit: function (Produit, callback) {
-        return db.query('DELETE from produits WHERE idProduit = ?', [Produit.id], callback);
+        return db.query('DELETE from produits WHERE idProduit = ?', [Produit.idProduit], callback);
     }
 }
 
