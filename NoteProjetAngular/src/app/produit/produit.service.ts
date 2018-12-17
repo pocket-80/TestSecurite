@@ -10,6 +10,8 @@ export class ProduitService {
   constructor(private http: HttpClient) { }
 
   getProduit(): Observable<Produit[]> {
+    console.log("Sortie du Get: \n");
+    console.log(this.http.get<Produit[]>(`${environment.apiUrl}/produits`));
     return  this.http.get<Produit[]>(`${environment.apiUrl}/produits`);
   }
 

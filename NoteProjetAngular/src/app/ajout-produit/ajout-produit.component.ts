@@ -25,12 +25,14 @@ export class AjoutProduitComponent implements OnInit {
   ngOnInit() {
   }
 
-  createMatiere(data: Produit) {
-    const payload = {
-      ...data
-    };
+  createProduit( nom: String,  descr: String) {
+    // const payload = {
+    //   ...data
+    // };
+    let Produit monP: Produit;
+    monP = new Produit();
     this.store.dispatch(new ProduitListModule.LoadCreateProduit(payload));
-    // this.matiereForm.reset();
+    this.produitForm.reset();
     this.router.navigateByUrl('/produit');
   }
 

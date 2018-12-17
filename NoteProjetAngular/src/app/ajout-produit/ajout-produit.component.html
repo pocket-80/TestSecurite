@@ -2,15 +2,15 @@
   <br>
   <form [formGroup]="produitForm">
     <div class="col-md-6 form-group">
-      <label class=" control-label">Libéllé Produit</label>
+      <label class=" control-label">Nom Produit</label>
       <div class="col-md-12 no-padding">
-        <input name="libelle" id="libelle" formControlName="libelle" class="form-control" placeholder="" type="text" />
+        <input name="nomProduit" id="nomProduit" formControlName="nomProduit" class="form-control" placeholder="" type="text" />
       </div>
     </div>
     <div class="col-md-6 form-group">
-      <label class=" control-label">Coefficient Produit</label>
+      <label class=" control-label">Description Produit</label>
       <div class="col-md-12 no-padding">
-        <input name="coefficient" id="coefficient" formControlName="coefficient" class="form-control" placeholder="" type="number" />
+        <input name="descriptionProduit" id="descriptionProduit" formControlName="descriptionProduit" class="form-control" placeholder="" type="text" />
       </div>
     </div>
     <div class="pad-10">
@@ -18,8 +18,8 @@
               [popoverTitle]="'Confirmation'"
               [popoverMessage]="'êtes-vous sûr?'"
               placement="top"
-              (confirm)="createProduit(produitForm.value)"
-              type="submit" class="btn btn-save btn-primary" [disabled]="!produitForm.valid">
+              (confirm)="createProduit(nomProduit.value,descriptionProduit.value )"
+              type="submit" class="btn btn-save btn-primary">
         <span class="glyphicon glyphicon-floppy-disk"></span> Sauvegarder
       </button>
     </div>
