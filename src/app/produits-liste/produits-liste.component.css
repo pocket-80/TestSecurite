@@ -1,0 +1,23 @@
+td,th{
+    text-align: center;
+    border: 1px solid black;
+    width: 30%;
+}
+
+.afficheProduit:hover {
+    cursor: pointer;
+}
+/* Popup container */
+.popup {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    /*opacity: 0.80;*/
+    background-color:white; /*  */
+    text-align: center;
+    padding-top:5%;
+  }
+
+
