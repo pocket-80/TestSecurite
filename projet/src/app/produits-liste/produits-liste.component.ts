@@ -3,13 +3,14 @@ import { Produit } from '../models/produits';
 import { Subscription } from 'rxjs';
 import { ProduitsService } from '../services/produits.service';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, RequiredValidator } from '@angular/forms';
 import * as firebase from 'firebase';
 import { Utilisateur } from '../models/utilisateur';
 import { UtilisateursService } from '../services/utilisateurs.service';
 import DataSnapshot = firebase.database.DataSnapshot;
 import { Panier } from '../models/panier';
 import { isUndefined } from 'util';
+import { isDefined } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-produits-liste',
@@ -51,15 +52,26 @@ export class ProduitsListeComponent implements OnInit, OnDestroy {
 
   /*****FONCTION POUR SUPPRIMER LES PRODUITS DE LA BASE DE DONNEES*****/
   onDeleteProduit(p: Produit) {
-    this.produitsService.removeProduit(p);
+    let index = 0;
     // VERIFICATION QUE LE PRODUIT N'APPARTENAIT PAS AU PANIER D'UN UTILISATEUR
+    // SI C'EST LE CAS ON SUPPRIME LE PRODUIT DE CHAQUE PANIER
     this.utilisateurs.forEach(u => {
-      u.Panier.Liste.forEach(pr => {
-        if (pr.Nom == p.Nom) {
-          this.supprimerProduitDuPanier(pr);
-        }
-      });
+      index = 0;
+      console.log("Analyse du panier de " + u.Nom);
+      if (isDefined(u.Panier.Liste)) {
+        u.Panier.Liste.forEach(pr => {
+          if (pr.Nom == p.Nom) {
+            u.Panier.PrixTotal -= pr.Prix * pr.Quantite;
+            u.Panier.Liste.splice(index, 1);
+            return 0;
+          }
+          index++;
+        });
+      }
+
     })
+    this.produitsService.removeProduit(p);
+    firebase.database().ref('/utilisateurs').set(this.utilisateurs);
   }
 
   /*****FONCTION APPLIQUEE LORSQUE L'ON QUITTE CETTE PAGE*****/
@@ -86,8 +98,8 @@ export class ProduitsListeComponent implements OnInit, OnDestroy {
     this.produitForm = this.formBuilder.group({
       nom: ['', Validators.required],
       description: ['', Validators.required],
-      prix: ['', Validators.required],
-      quantite: ['', Validators.required],
+      prix: ['', Validators.min(0)],
+      quantite: ['', Validators.min(0)],
     });
   }
 
@@ -182,7 +194,6 @@ export class ProduitsListeComponent implements OnInit, OnDestroy {
       this.utilisateurCurrent.Panier.Liste.push(produit);
     }
 
-    //MAJ DU PRIX DU PANIER
     // ENREGISTREMENT DES MODIFICATIONS EN BDD
     this.utilisateurCurrent.Panier.PrixTotal += produit.Prix;
     this.utilisateurs[index] = this.utilisateurCurrent;
@@ -208,9 +219,6 @@ export class ProduitsListeComponent implements OnInit, OnDestroy {
         // POUR CELA ON RAJOUTE LA QUANTITE DE CHAQUE PRODUIT QUI ETE DANS LE PANIER
         this.produits.forEach(pr => {
           if (p.Nom == pr.Nom) {
-            // console.log("Le produit est déjà dans le panier \n");
-            // console.log("Quantite produit en stock: "+pr.Quantite );
-            // console.log("Quantite produit dans panier: "+p.Quantite );
             pr.Quantite += p.Quantite;
           }
         })
@@ -226,22 +234,24 @@ export class ProduitsListeComponent implements OnInit, OnDestroy {
 
   /*****FONCTION PERMETTANT DE VIDER L'INTEGRALITE DU PANIER*****/
   viderPanier() {
-    this.utilisateurCurrent.Panier.Liste.forEach(p => {
-      this.produits.forEach(prInBdd => {
-        // ON RECUPERE LE PRODUIT DE LA BDD CORRESPOND AU PRODUIT DANS LA BDD
-        if (prInBdd.Nom == p.Nom) {
-          // ON DECROIT LE PRIX DU PANIER A CHAQUE ITERATION 
-          //ET ON REMET LA QUANTITE CORRESPONDANTE DU PRODUIT CHOISI DANS LA QUANTITE EN BDD
-          this.utilisateurCurrent.Panier.PrixTotal -= p.Quantite * prInBdd.Prix;
-          prInBdd.Quantite += p.Quantite;
-        }
+    if (isDefined(this.utilisateurCurrent.Panier.Liste)) {
+      this.utilisateurCurrent.Panier.Liste.forEach(p => {
+        this.produits.forEach(prInBdd => {
+          // ON RECUPERE LE PRODUIT DE LA BDD CORRESPOND AU PRODUIT DANS LA BDD
+          if (prInBdd.Nom == p.Nom) {
+            // ON DECROIT LE PRIX DU PANIER A CHAQUE ITERATION 
+            //ET ON REMET LA QUANTITE CORRESPONDANTE DU PRODUIT CHOISI DANS LA QUANTITE EN BDD
+            this.utilisateurCurrent.Panier.PrixTotal -= p.Quantite * prInBdd.Prix;
+            prInBdd.Quantite += p.Quantite;
+          }
+        })
       })
-    })
-    this.utilisateurCurrent.Panier = new Panier();
-    this.utilisateurCurrent.Panier.Liste = new Array<Produit>();
-    this.utilisateurCurrent.Panier.PrixTotal = 0;
-    // SAUVEGARDE DES MODIFICATIONS
-    firebase.database().ref('/utilisateurs').set(this.utilisateurs);
-    firebase.database().ref('/produits').set(this.produits);
+      this.utilisateurCurrent.Panier = new Panier();
+      this.utilisateurCurrent.Panier.Liste = new Array<Produit>();
+      this.utilisateurCurrent.Panier.PrixTotal = 0;
+      // SAUVEGARDE DES MODIFICATIONS
+      firebase.database().ref('/utilisateurs').set(this.utilisateurs);
+      firebase.database().ref('/produits').set(this.produits);
+    }
   }
 }
